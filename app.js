@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
+var appCtrl = require("./public/javascripts/main.js")
 
 mongoose.connect('mongodb://localhost/company')
 
@@ -25,24 +26,17 @@ app.get('/applicants', function(req, res){
 	res.sendFile('html/applicants.html', {root : './public'});
 });
 
-var applicationCtrl = require('./controllers/applicationCtrl.js')
-
-app.get('/api/applicants', applicationCtrl.getApplicant)
-app.get('/api/applicants/:applicantID', applicationCtrl.getApplicant)
-
-app.post('/api/applicants', applicationCtrl.createApplicant)
-
 // creates and applicant
 app.post('/applicant', function(req, res){
 	// Here is where you need to get the data
 	// from the post body and store it in the database
 	console.log(req.body);
-	res.redirect("/success");
+	// res.redirect("/success");
 });
 
-app.get("/success", function(req, res){
-	res.sendFile('html/success.html', {root: './public'});
-})
+// app.get("/success", function(req, res){
+// 	res.sendFile('html/success.html', {root: './public'});
+// })
 
 
 
